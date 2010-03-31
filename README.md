@@ -13,7 +13,7 @@ Instantiate a pusher, using your API key
     
 Trigger an event
 
-    Pusher['channel'].trigger('event', data={msg => 'Hello world!'})
+    Pusher['channel'].trigger('event', data={'msg': 'Hello world!'})
 
 
 Using within Google App Engine
@@ -36,6 +36,7 @@ Typical usage (e.g. using a taskqueue, see: http://code.google.com/appengine/doc
             # ...
         
             # Trigger some event with pusherapp, using a taskqueue
+            # The task will be picked up by WorkerPushRequestHandler, below
             taskqueue.add(url='/worker/push/channel/event', params={'msg': 'Hello world!'})
         
             # ...

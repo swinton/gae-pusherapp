@@ -19,7 +19,7 @@ Trigger an event
 Using within Google App Engine
 ------------------------------
 
-Typical usage (e.g. using a taskqueue, see: http://code.google.com/appengine/docs/python/taskqueue/):
+Typical usage (e.g. using a taskqueue, see: <http://code.google.com/appengine/docs/python/taskqueue/>):
 
     import pusherapp
 

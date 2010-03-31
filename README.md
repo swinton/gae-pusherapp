@@ -6,15 +6,16 @@ Getting started
 
 Request pusher credentials from <http://pusherapp.com>
 
-Instantiate a pusher, using your API key
+First, instantiate a pusher, using your API key
 
     import pusherapp
     pusher = pusherapp.Pusher(key='your-pusher-key')
     
-Trigger an event
+Next, trigger an event
 
-    Pusher['channel'].trigger('event', data={'msg': 'Hello world!'})
+    pusher['channel'].trigger('event', data={'msg': 'Hello world!'})
 
+You probably want to run this in a taskqueue... read on for details...
 
 Using within Google App Engine
 ------------------------------

@@ -9,7 +9,8 @@ Request pusher credentials from <http://pusherapp.com>
 First, instantiate a pusher, using your API key
 
     import pusherapp
-    pusher = pusherapp.Pusher(key='your-pusher-key')
+    pusher = pusherapp.Pusher(app_id='your-pusher-app-id',
+        key='your-pusher-api-key', secret='your-pusher-secret')
     
 Next, trigger an event
 
@@ -44,10 +45,15 @@ Typical usage (e.g. using a taskqueue, see: <http://code.google.com/appengine/do
     
     class WorkerPushRequestHandler(webapp.RequestHandler):
     
+        pusher_api_key = "{your-pusher-api-key}"
+        pusher_app_id  = "{your-pusher-app-id}"
+        pusher_secret  = "{your-pusher-secret}"
+    
         def post(self, channel, event):
     
             # Construct pusher...
-            pusher = pusherapp.Pusher(key=self.pusher_api_key)
+            pusher = pusherapp.Pusher(app_id=self.pusher_app_id,
+                key=self.pusher_api_key, secret=self.pusher_secret)
         
             # Construct data from request parameters...
             data = dict([(arg, self.request.get(arg)) for arg in self.request.arguments()])
@@ -59,6 +65,5 @@ Typical usage (e.g. using a taskqueue, see: <http://code.google.com/appengine/do
             if result.status_code >= 200 and result.status_code <= 299:
                 self.response.headers["Content-Type"] = "text/plain"
                 self.response.out.write("OK")
-                #self.response.out.write("\nchannel: %s, event: %s, data: %s" % (channel, event, str(data)))
             else:
                 self.error(result.status_code)

@@ -117,7 +117,7 @@ class Pusher():
         return self.__channels[channel]
     
     def get_app_id(self):
-        return self.app_id
+        return self.__app_id
     
     def get_key(self):
         return self.__key
